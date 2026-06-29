@@ -25,7 +25,7 @@ REPORT_DIR="${ROOT}/reports/${RUN_ID}"
 mkdir -p "$RESULT_DIR"
 JMETER="${JMETER_HOME:+$JMETER_HOME/bin/}jmeter"
 
-echo "=== ITS Web Performance Run: ${RUN_ID} ==="
+echo "=== Web Performance Run: ${RUN_ID} ==="
 "$JMETER" -n -t "$JMX" \
   -q "$ENV_FILE" -p "$USER_PROPS" \
   -l "${RESULT_DIR}/results.jtl" -j "${RESULT_DIR}/jmeter.log" \

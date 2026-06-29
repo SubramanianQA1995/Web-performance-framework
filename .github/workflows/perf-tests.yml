@@ -1,8 +1,8 @@
 # =====================================================================
-# ITS WEB Performance Framework - GitHub Actions
+# Web Performance Framework - GitHub Actions
 # Place at: .github/workflows/web-perf-tests.yml
 # =====================================================================
-name: ITS Web Performance Tests
+name: Web Performance Tests
 on:
   workflow_dispatch:
     inputs:

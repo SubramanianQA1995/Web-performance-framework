@@ -47,9 +47,9 @@ JMX **and both CSVs** (`routes.csv`, `userdata.csv`); set load + `embedded_url_r
 1. Cloud generators sized for page-weight load (fewer threads/generator than API).
 2. Set the competitive burst: `sync_group_size` = cohort size, `sync_timeout`
    generous (e.g. 60000).
-3. Ramp realistically (≥ 5 min for 10k+), watch BlazeMeter live + ITS APM.
+3. Ramp realistically (≥ 5 min for 10k+), watch BlazeMeter live + your APM.
 4. Expand `userdata.csv`/`routes.csv` so users don't collide unrealistically.
-5. Scope `embedded_url_re` to ITS asset domains/CDNs you own.
+5. Scope `embedded_url_re` to the target application asset domains/CDNs you own.
 
 ## Reading results
 HTML dashboard surfaces **TPS, error %, avg, P90/P95/P99, throughput**. Because

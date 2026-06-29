@@ -1,5 +1,5 @@
 # =====================================================================
-# ITS WEB Performance Framework - Azure DevOps Pipeline
+# Web Performance Framework - Azure DevOps Pipeline
 # Installs JMeter, runs Web Smoke (gate) + selected load profile,
 # publishes JTL + HTML dashboard.
 # =====================================================================

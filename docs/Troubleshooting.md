@@ -21,7 +21,7 @@ CSS/JS/image) → disable View Results Tree before load.
 | Page transaction much slower than its main request | That's correct — transaction = HTML **+** all embedded assets | Expand sub-results to find the slow asset; this is the frontend signal you want. |
 | External CDN assets inflating page time | `embedded_url_re` too broad | Scope it to your app domains only (it already excludes googleapis on BlazeDemo). |
 | Test hangs at a step | Synchronizing Timer group never fills | Ensure `sync_group_size` ≤ total threads; rely on `sync_timeout` to auto-release; set `sync_group_size=1` to disable. |
-| Assertion fails on `Welcome to the Simple Travel Agency` etc. | Wrong base_url, redirect, or ITS migration | Confirm `base_url`/`protocol`/`port`; update assertion anchors to the ITS page text when migrating. |
+| Assertion fails on `Welcome to the Simple Travel Agency` etc. | Wrong base_url, redirect, or the target application migration | Confirm `base_url`/`protocol`/`port`; update assertion anchors to the target page text when migrating. |
 | Embedded resources cause `Non HTTP response`/timeouts at scale | Generator network saturation | Fewer threads/generator, more generators; raise `response_timeout`. |
 | OutOfMemory on generator | Page weight × threads too high | Raise heap (`HEAP="-Xms1g -Xmx4g"`); response data already off; reduce threads. |
 | Form POST rejected (missing field) | A hidden/required field not sent | Compare against the live form; add the missing `HTTPArgument` (forms are field-sensitive). |

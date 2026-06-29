@@ -42,7 +42,7 @@ $argList = @(
 )
 foreach ($k in $Props.Keys) { $argList += "-J$k=$($Props[$k])" }
 
-Write-Host "=== ITS Web Performance Run: $runId ===" -ForegroundColor Cyan
+Write-Host "=== Web Performance Run: $runId ===" -ForegroundColor Cyan
 Write-Host "Plan : $jmx"
 Write-Host "Env  : $envFile"
 Write-Host "Report: $reportDir"

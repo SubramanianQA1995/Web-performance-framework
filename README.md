@@ -1,4 +1,4 @@
-# ITS — Web / Application-Level Performance Testing Framework
+# Web / Application-Level Performance Testing Framework
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 ![Apache JMeter](https://img.shields.io/badge/Apache%20JMeter-5.6.3-D22128?logo=apachejmeter&logoColor=white)
@@ -14,7 +14,7 @@ register/confirm), downloading every page asset, so it validates **both the
 frontend (page-load weight & asset delivery) and the backend (form processing,
 DB)** at scale.
 
-Built on the public **BlazeDemo** site (`https://blazedemo.com`); swap in ITS
+Built on the public **BlazeDemo** site (`https://blazedemo.com`); swap in the target application
 pages by changing config only. Runs in **GUI, CLI, BlazeMeter, and RedLine13**.
 
 > **No third-party plugins. No custom Java. No external JARs.** Standard JMeter
@@ -39,13 +39,13 @@ parallel downloads, with an HTTP Cache Manager modelling first-time visitors),
 so the measured "page time" reflects true frontend delivery, not just the HTML.
 
 See [`docs/Approach.md`](docs/Approach.md) for the full rationale, the BlazeDemo
-justification, the ITS page mapping, and where real-browser testing fits.
+justification, the target page mapping, and where real-browser testing fits.
 
 ---
 
-## 2. The user journey (maps directly to ITS)
+## 2. The user journey (maps directly to the target application)
 
-| # | Transaction | HTTP | BlazeDemo page | ITS equivalent |
+| # | Transaction | HTTP | BlazeDemo page | App equivalent |
 |---|---|---|---|---|
 | 1 | `TX_01_Open_Landing_CitySelection` | `GET /` | landing w/ city dropdowns | landing / **city selection** |
 | 2 | `TX_02_Select_City` | `POST /reserve.php` | flight list | **seat/zone selection** list |
@@ -140,17 +140,17 @@ via the platform's JMeter Properties box. Full steps, the property list, and the
 
 ---
 
-## 7. Migrating to ITS
+## 7. Migrating to the target application
 
 Change config only — not structure:
 
-1. `base_url`, `protocol`, `port`, `embedded_url_re` → ITS host/domain.
-2. Sampler **paths + form fields** → ITS pages (keep the 4-transaction shape;
+1. `base_url`, `protocol`, `port`, `embedded_url_re` → the target application host/domain.
+2. Sampler **paths + form fields** → App pages (keep the 4-transaction shape;
    add a 5th, e.g. a separate *zone selection* page, by copying a transaction).
-3. **Correlation** → update the Regex Extractor to ITS hidden fields / CSRF
+3. **Correlation** → update the Regex Extractor to the target application hidden fields / CSRF
    tokens (the pattern is already there).
-4. CSV columns → ITS registration + selection data.
-5. SLA/assertion anchors → ITS page text + ITS page-time targets.
+4. CSV columns → the target application registration + selection data.
+5. SLA/assertion anchors → App page text + App page-time targets.
 
 The reusable components, embedded-resource handling, competitive-burst timer,
 reporting, CI/CD, and cloud packaging stay identical.

@@ -51,11 +51,11 @@ $tgSpike  = @(
 $tgSoak   = @( (TG 'TG - Web Soak (endurance)' '${__P(soak_users,20)}' '${__P(soak_rampup,120)}' '0' '${__P(soak_duration,1800)}' 'true' '-1') )
 
 $plans = @{
-  'EndToEndJourney.jmx' = @{ name='ITS Web - End To End Journey'; tgs=$tgE2E }
-  'LoadTest.jmx'        = @{ name='ITS Web - Load Test';          tgs=$tgLoad }
-  'StressTest.jmx'      = @{ name='ITS Web - Stress Test';        tgs=$tgStress }
-  'SpikeTest.jmx'       = @{ name='ITS Web - Spike Test';         tgs=$tgSpike }
-  'SoakTest.jmx'        = @{ name='ITS Web - Soak Test';          tgs=$tgSoak }
+  'EndToEndJourney.jmx' = @{ name='Web - End To End Journey'; tgs=$tgE2E }
+  'LoadTest.jmx'        = @{ name='Web - Load Test';          tgs=$tgLoad }
+  'StressTest.jmx'      = @{ name='Web - Stress Test';        tgs=$tgStress }
+  'SpikeTest.jmx'       = @{ name='Web - Spike Test';         tgs=$tgSpike }
+  'SoakTest.jmx'        = @{ name='Web - Soak Test';          tgs=$tgSoak }
 }
 
 foreach ($file in $plans.Keys) {

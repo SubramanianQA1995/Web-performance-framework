@@ -51,7 +51,7 @@ but you lose the clean burst).
 
 ## 4. embedded_url_re on cloud
 Keep it scoped to the **app's own asset domains** so you measure your frontend,
-not third-party CDNs. For ITS, set it to ITS's static/asset hosts, e.g.:
+not third-party CDNs. For the target application, set it to the target application's static/asset hosts, e.g.:
 ```
 embedded_url_re=^https?://(.*\.)?its\.company\.com/.*|^https?://cdn\.its\.company\.com/.*
 ```

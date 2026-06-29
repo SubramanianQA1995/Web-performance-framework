@@ -1,4 +1,4 @@
-# Approach, Sample-Site Justification & ITS Mapping
+# Approach, Sample-Site Justification & App Mapping
 
 ## 1. Protocol-level browser simulation vs real-browser
 
@@ -36,7 +36,7 @@ metrics; the two are complementary, not substitutes.
 
 > Rule of thumb: protocol-level answers *"does the site stay fast and correct
 > under N users?"*; real-browser answers *"how fast does the page paint for one
-> user?"*. ITS promo-scale capacity planning is the former.
+> user?"*. your promo-scale capacity planning is the former.
 
 ---
 
@@ -44,9 +44,9 @@ metrics; the two are complementary, not substitutes.
 
 `https://blazedemo.com` is a public, stable, **server-rendered** multi-step
 booking app — purpose-built by BlazeMeter for exactly this kind of demo. It
-exercises every capability the ITS framework needs:
+exercises every capability the target framework needs:
 
-| Capability needed for ITS | BlazeDemo provides |
+| Capability needed for the target application | BlazeDemo provides |
 |---|---|
 | Multi-page real-user journey | landing → reserve → purchase → confirmation |
 | City/option selection | `fromPort` / `toPort` dropdowns → `POST /reserve.php` |
@@ -63,17 +63,17 @@ it a genuine **page-load** workload — the point of this framework.
 
 ---
 
-## 3. ITS page mapping
+## 3. App page mapping
 
-| Framework transaction | BlazeDemo | ITS page |
+| Framework transaction | BlazeDemo | App page |
 |---|---|---|
 | `TX_01_Open_Landing_CitySelection` | `GET /` | Promo landing / **city selection** |
 | `TX_02_Select_City` | `POST /reserve.php` | **Seat/zone selection** list |
 | `TX_03_Select_Flight_Seat` (competitive) | `POST /purchase.php` | Seat chosen → **registration** form |
 | `TX_04_Register_Confirm` | `POST /confirmation.php` | Confirm / book |
 
-**Adding ITS's separate "zone selection" step:** copy any transaction block,
-point it at the ITS zone page, add its correlation/assertions, and insert it
+**Adding the target application's separate "zone selection" step:** copy any transaction block,
+point it at the target zone page, add its correlation/assertions, and insert it
 between city and seat. The generator (`scripts/generate-plans.ps1`) then
 propagates it to every load profile automatically.
 
