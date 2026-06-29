@@ -1,0 +1,13 @@
+inputName,address,city,state,zipCode,cardType,creditCardNumber,creditCardMonth,creditCardYear,nameOnCard
+James Brown,123 Perf St,Boston,MA,02101,visa,4111111111111111,11,2030,James Brown
+Mary Smith,9 Load Ave,Austin,TX,73301,amex,378282246310005,03,2029,Mary Smith
+John Williams,52 Test Rd,Denver,CO,80014,dinersclub,30569309025904,07,2031,John Williams
+Patricia Jones,71 Scale Blvd,Seattle,WA,98101,visa,4012888888881881,12,2028,Patricia Jones
+Robert Garcia,8 Spike Ln,Miami,FL,33101,mastercard,5105105105105100,06,2030,Robert Garcia
+Jennifer Miller,400 Soak Way,Chicago,IL,60601,visa,4111111111111111,09,2027,Jennifer Miller
+Michael Davis,17 Stress Ct,Phoenix,AZ,85001,amex,371449635398431,01,2032,Michael Davis
+Linda Rodriguez,63 Burst Dr,Portland,OR,97201,mastercard,5555555555554444,04,2029,Linda Rodriguez
+William Martinez,2 Latency Pl,Dallas,TX,75201,visa,4012888888881881,10,2030,William Martinez
+Elizabeth Hernandez,99 Render St,Boston,MA,02110,dinersclub,38520000023237,05,2031,Elizabeth Hernandez
+David Lopez,5 Throughput Ter,Atlanta,GA,30301,visa,4111111111111111,08,2028,David Lopez
+Barbara Gonzalez,44 Concurrency Ave,Newark,NJ,07101,mastercard,5105105105105100,02,2033,Barbara Gonzalez

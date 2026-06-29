@@ -1,0 +1,56 @@
+// =====================================================================
+// ITS WEB Performance Framework - Jenkins Declarative Pipeline
+// Stages: Checkout -> Web Smoke (gate) -> Load profile -> Report -> Publish
+// Requires a JMeter tool named 'JMeter' (Global Tool Config) or JMETER_HOME.
+// =====================================================================
+pipeline {
+  agent any
+  parameters {
+    choice(name: 'ENVIRONMENT', choices: ['dev','qa','uat','perf'], description: 'Target environment')
+    choice(name: 'TEST_TYPE',  choices: ['Load','Stress','Spike','Soak'], description: 'Load profile after smoke')
+    string(name: 'USERS',    defaultValue: '20',  description: 'Virtual users')
+    string(name: 'RAMPUP',   defaultValue: '60',  description: 'Ramp-up seconds')
+    string(name: 'DURATION', defaultValue: '300', description: 'Steady-state seconds')
+    string(name: 'SYNC_GROUP', defaultValue: '1', description: 'Competitive burst group size (seat selection); 1=off')
+  }
+  options { timestamps(); timeout(time: 2, unit: 'HOURS'); buildDiscarder(logRotator(numToKeepStr: '20')) }
+  environment {
+    JMETER_HOME = tool name: 'JMeter'
+    PATH = "${JMETER_HOME}/bin:${env.PATH}"
+  }
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+
+    stage('Web Smoke (Quality Gate)') {
+      steps {
+        sh '''
+          chmod +x scripts/run-test.sh
+          ./scripts/run-test.sh SmokeTest ${ENVIRONMENT}
+        '''
+      }
+    }
+
+    stage('Web Load Profile') {
+      steps {
+        sh '''
+          ./scripts/run-test.sh ${TEST_TYPE}Test ${ENVIRONMENT} \
+            -Jusers=${USERS} -Jrampup=${RAMPUP} -Jduration=${DURATION} \
+            -Jsync_group_size=${SYNC_GROUP}
+        '''
+      }
+    }
+
+    stage('Publish Report') {
+      steps {
+        publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true,
+          reportDir: 'reports', reportFiles: '**/index.html', reportName: 'JMeter Web Dashboard'])
+      }
+    }
+  }
+  post {
+    always {
+      archiveArtifacts artifacts: 'results/**/*.jtl, results/**/*.log, reports/**', allowEmptyArchive: true
+      perfReport sourceDataFiles: 'results/**/results.jtl', errorFailedThreshold: 5, errorUnstableThreshold: 1
+    }
+  }
+}
