@@ -1,5 +1,5 @@
 // =====================================================================
-// ITS WEB Performance Framework - Jenkins Declarative Pipeline
+// Web Performance Framework - Jenkins Declarative Pipeline
 // Stages: Checkout -> Web Smoke (gate) -> Load profile -> Report -> Publish
 // Requires a JMeter tool named 'JMeter' (Global Tool Config) or JMETER_HOME.
 // =====================================================================
